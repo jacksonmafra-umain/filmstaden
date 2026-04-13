@@ -18,7 +18,8 @@
       "Bash(git commit -m \"chore: project scaffold with Gradle 9 + Kotlin 2.3.20:*)",
       "Bash(git commit -m \"feat\\(theme\\): Filmstaden dark theme with brand colors:*)",
       "Bash(ls *.png)",
-      "Bash(git commit -m \"feat\\(data\\): models + mock repository with posters:*)"
+      "Bash(git commit -m \"feat\\(data\\): models + mock repository with posters:*)",
+      "Bash(git commit -m \"feat\\(navigation\\): Navigation 3 infrastructure with Koin:*)"
     ]
   }
 }

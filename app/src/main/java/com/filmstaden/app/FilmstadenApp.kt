@@ -1,6 +1,7 @@
 package com.filmstaden.app
 
 import android.app.Application
+import com.filmstaden.app.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -11,7 +12,7 @@ class FilmstadenApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@FilmstadenApp)
-            modules(emptyList())
+            modules(appModules)
         }
     }
 }
