@@ -109,7 +109,7 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
                             com.filmstaden.app.ui.screens.tickets.MyTicketsScreen()
                         }
                         entry<More> {
-                            PlaceholderScreen("More")
+                            com.filmstaden.app.ui.screens.more.MoreScreen()
                         }
                     }
                 )

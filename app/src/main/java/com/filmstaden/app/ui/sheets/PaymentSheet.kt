@@ -123,7 +123,7 @@ fun PaymentSheet(
                             .padding(horizontal = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("jackson@gmail.com", color = TextPrimary, fontSize = 13.sp)
+                        Text("jackson.mafra@umain.com", color = TextPrimary, fontSize = 13.sp)
                     }
                 }
 

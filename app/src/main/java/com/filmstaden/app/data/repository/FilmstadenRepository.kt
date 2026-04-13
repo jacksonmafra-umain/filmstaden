@@ -123,7 +123,7 @@ class FilmstadenRepository {
 
     fun getUserProfile() = UserProfile(
         name = "Jackson Mafra",
-        email = "jackson@gmail.com",
+        email = "jackson.mafra@umain.com",
         memberNumber = "HH7G64",
         orders = 12,
         points = 759,
