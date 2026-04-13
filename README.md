@@ -1,6 +1,8 @@
 # Filmstaden — Showcase Demo
 
-A non-affiliated, for-fun concept redesign of the Swedish cinema chain's mobile app, built with modern Android tooling. All content, logos, and brand references are used only as a visual reference for exploration; this is not an official Filmstaden product.
+A non-affiliated, for-fun concept redesign of the Swedish cinema chain's mobile app, built with modern Android tooling. 
+
+All content, logos, and brand references are used only as a visual reference for exploration; this is not an official Filmstaden product.
 
 The goal was to practice recent Android stack pieces (Jetpack Navigation 3, shared-element transitions, Koin 4, edge-to-edge) while building something a little more opinionated than a counter app — a small, self-contained booking flow with realistic states.
 
