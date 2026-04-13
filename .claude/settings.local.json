@@ -24,7 +24,8 @@
       "Bash(git commit -m \"feat\\(moviedetail\\): Movie Detail screen with date/time selection:*)",
       "Bash(git commit -m \"feat\\(seats\\): Seat Selection screen + Payment bottom sheet:*)",
       "Bash(git commit -m \"feat\\(tickets\\): My Tickets screen with HorizontalPager and QR codes:*)",
-      "Bash(git commit -m \"feat\\(more\\): More/Profile screen with stats and animated toggle:*)"
+      "Bash(git commit -m \"feat\\(more\\): More/Profile screen with stats and animated toggle:*)",
+      "Bash(git commit -m \"feat\\(auth\\): Login Modal with email/password form:*)"
     ]
   }
 }
