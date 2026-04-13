@@ -26,28 +26,6 @@ The goal was to practice recent Android stack pieces (Jetpack Navigation 3, shar
 - **More / Profile** with stats and animated theme toggle
 - **Login** modal
 
-## Tech
-
-- **Navigation 3 (1.1.0)** with shared-element transitions via `SharedTransitionLayout` + `LocalNavAnimatedContentScope`
-- **StateFlow**-based state in VMs; cinema selection lives in the repository as the source of truth
-- **Edge-to-edge** with transparent system bars; per-screen `navigationBarsPadding()` / hero imagery handles safe areas
-- **MotionLayout-free** animations — springy press feedback, animated tab pill indicator, seat scale-in, etc.
-
-## Architecture notes
-
-- `FilmstadenRepository` exposes `selectedCinema: StateFlow<Cinema>`; `CinemaSheetViewModel` is registered as `single` and hosted once at `AppRoot`, so every screen opens the *same* bottom sheet through `cinemaSheetVm::open`. No event bus, no nav-graph-scoped VM gymnastics.
-- `ui/SharedTransition.kt` provides a tiny `sharedElementModifier(key)` helper that combines the `SharedTransitionScope` from `SharedTransitionLayout` with `LocalNavAnimatedContentScope` from Navigation 3 — drop it on any composable to participate in the transition.
-- Seat stepper is derived (`ticketCount = selectedSeats.size`) instead of stored, so the stepper and the seat map can never disagree.
-
-## Run it
-
-```bash
-./gradlew :app:assembleDebug
-./gradlew :app:installDebug
-```
-
-Requires JDK 17+ and a device/emulator on API 29+.
-
 ## Design source
 
 The `design/filmstaden.pen` file is the source of truth for the mockups; screenshots above are exported from it.
