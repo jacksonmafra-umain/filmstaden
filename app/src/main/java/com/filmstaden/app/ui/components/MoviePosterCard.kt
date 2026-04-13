@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.filmstaden.app.data.models.Movie
+import com.filmstaden.app.ui.sharedElementModifier
 
 /**
  * Movie poster card with a springy press feedback for tactile feel.
@@ -58,7 +59,9 @@ fun MoviePosterCard(
             painter = painterResource(movie.posterResId),
             contentDescription = movie.title,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .then(sharedElementModifier("movie-hero-${movie.id}"))
         )
     }
 }

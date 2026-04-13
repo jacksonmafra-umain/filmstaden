@@ -39,7 +39,7 @@ import com.filmstaden.app.navigation.AppComposeNavigator
 import com.filmstaden.app.navigation.MovieDetail
 import com.filmstaden.app.ui.components.FilmstadenHeader
 import com.filmstaden.app.ui.components.MoviePosterCard
-import com.filmstaden.app.ui.sheets.CinemaSelectionSheet
+import com.filmstaden.app.ui.sheets.CinemaSheetViewModel
 import com.filmstaden.app.ui.theme.BgDark
 import com.filmstaden.app.ui.theme.BorderSubtle
 import com.filmstaden.app.ui.theme.FsRed
@@ -51,9 +51,11 @@ import org.koin.compose.koinInject
 @Composable
 fun HomeScreen(
     navigator: AppComposeNavigator = koinInject(),
-    viewModel: HomeViewModel = koinViewModel()
+    viewModel: HomeViewModel = koinViewModel(),
+    cinemaSheetVm: CinemaSheetViewModel = koinInject()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val selectedCinema by cinemaSheetVm.selectedCinema.collectAsStateWithLifecycle()
 
     Box(modifier = Modifier.fillMaxSize().background(BgDark)) {
         Column(
@@ -63,8 +65,8 @@ fun HomeScreen(
         ) {
             FilmstadenHeader {
                 CinemaLocationRow(
-                    cinemaName = state.cinema.name,
-                    onChange = viewModel::openCinemaSheet
+                    cinemaName = selectedCinema.name,
+                    onChange = cinemaSheetVm::open
                 )
                 Text(
                     text = "Hey ${state.userName}, Good Afternoon!",
@@ -96,13 +98,6 @@ fun HomeScreen(
             )
             Spacer(Modifier.height(24.dp))
         }
-
-        CinemaSelectionSheet(
-            visible = state.isCinemaSheetOpen,
-            cinemas = viewModel.getCinemas(),
-            onSelect = { viewModel.selectCinema(it) },
-            onDismiss = { viewModel.closeCinemaSheet() }
-        )
     }
 }
 

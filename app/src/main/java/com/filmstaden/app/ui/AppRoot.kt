@@ -18,9 +18,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -36,12 +39,18 @@ import com.filmstaden.app.navigation.NavigationCommand
 import com.filmstaden.app.navigation.SeatSelection
 import com.filmstaden.app.navigation.toBottomTabOrNull
 import com.filmstaden.app.ui.components.AnimatedTabBar
+import com.filmstaden.app.ui.sheets.CinemaSelectionSheet
+import com.filmstaden.app.ui.sheets.CinemaSheetViewModel
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
+fun AppRoot(
+    navigator: AppComposeNavigator = koinInject(),
+    cinemaSheetVm: CinemaSheetViewModel = koinInject()
+) {
     val backStack = rememberNavBackStack(Home)
+    val sheetOpen by cinemaSheetVm.isOpen.collectAsStateWithLifecycle()
 
     LaunchedEffect(navigator) {
         navigator.commands.collect { command ->
@@ -76,6 +85,8 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
             top is More
 
     SharedTransitionLayout {
+      CompositionLocalProvider(LocalSharedTransitionScope provides this) {
+      Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
             Box(modifier = Modifier.weight(1f)) {
                 NavDisplay(
@@ -129,6 +140,15 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
                 )
             }
         }
+
+        CinemaSelectionSheet(
+            visible = sheetOpen,
+            cinemas = cinemaSheetVm.cinemas(),
+            onSelect = cinemaSheetVm::select,
+            onDismiss = cinemaSheetVm::close
+        )
+      }
+      }
     }
 }
 

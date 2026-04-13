@@ -9,6 +9,9 @@ import com.filmstaden.app.data.models.SeatStatus
 import com.filmstaden.app.data.models.SeatTier
 import com.filmstaden.app.data.models.Ticket
 import com.filmstaden.app.data.models.UserProfile
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class FilmstadenRepository {
 
@@ -56,7 +59,14 @@ class FilmstadenRepository {
 
     fun getCinemas(): List<Cinema> = listOf(sergel, scandinavia, rigoletto, heronCity)
 
-    fun getSelectedCinema(): Cinema = sergel
+    private val _selectedCinema = MutableStateFlow(sergel)
+    val selectedCinema: StateFlow<Cinema> = _selectedCinema.asStateFlow()
+
+    fun getSelectedCinema(): Cinema = _selectedCinema.value
+
+    fun setSelectedCinema(cinema: Cinema) {
+        _selectedCinema.value = cinema
+    }
 
     fun getAvailableDates(): List<Pair<String, Int>> = listOf(
         "Thu" to 16,

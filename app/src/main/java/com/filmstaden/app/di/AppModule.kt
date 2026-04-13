@@ -8,6 +8,7 @@ import com.filmstaden.app.ui.screens.moviedetail.MovieDetailViewModel
 import com.filmstaden.app.ui.screens.seatselection.SeatSelectionViewModel
 import com.filmstaden.app.ui.screens.more.MoreViewModel
 import com.filmstaden.app.ui.screens.tickets.MyTicketsViewModel
+import com.filmstaden.app.ui.sheets.CinemaSheetViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
@@ -17,6 +18,7 @@ val navigationModule = module {
 
 val dataModule = module {
     single { FilmstadenRepository() }
+    single { CinemaSheetViewModel(get()) }
 }
 
 val viewModelModule = module {

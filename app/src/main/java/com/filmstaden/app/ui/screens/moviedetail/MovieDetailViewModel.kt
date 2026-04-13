@@ -1,7 +1,6 @@
 package com.filmstaden.app.ui.screens.moviedetail
 
 import androidx.lifecycle.ViewModel
-import com.filmstaden.app.data.models.Cinema
 import com.filmstaden.app.data.models.Movie
 import com.filmstaden.app.data.repository.FilmstadenRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +10,6 @@ import kotlinx.coroutines.flow.update
 
 data class MovieDetailState(
     val movie: Movie,
-    val cinema: Cinema,
     val dates: List<Pair<String, Int>>,
     val times: List<String>,
     val selectedDateIndex: Int = 2,
@@ -29,7 +27,6 @@ class MovieDetailViewModel(
     private val _state = MutableStateFlow(
         MovieDetailState(
             movie = repository.getMovie(movieId),
-            cinema = repository.getSelectedCinema(),
             dates = repository.getAvailableDates(),
             times = repository.getAvailableTimes()
         )

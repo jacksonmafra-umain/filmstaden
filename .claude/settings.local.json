@@ -27,7 +27,20 @@
       "Bash(git commit -m \"feat\\(more\\): More/Profile screen with stats and animated toggle:*)",
       "Bash(git commit -m \"feat\\(auth\\): Login Modal with email/password form:*)",
       "WebFetch(domain:maven.google.com)",
-      "Bash(git commit -m \"build: upgrade Navigation 3 to 1.1.0 + add SplashScreen API:*)"
+      "Bash(git commit -m \"build: upgrade Navigation 3 to 1.1.0 + add SplashScreen API:*)",
+      "Bash(./gradlew :app:assembleDebug)",
+      "Bash(unzip -p /Users/jackson.mafra/.gradle/caches/modules-2/files-2.1/androidx.navigation3/navigation3-ui-android/1.1.0/8a241b4df6dcdc31cf18f45735719c819c7447ec/navigation3-ui-android-1.1.0-sources.jar androidx/navigation3/ui/NavEntry.kt)",
+      "Bash(unzip -l /Users/jackson.mafra/.gradle/caches/modules-2/files-2.1/androidx.navigation3/navigation3-ui-android/1.1.0/8a241b4df6dcdc31cf18f45735719c819c7447ec/navigation3-ui-android-1.1.0-sources.jar)",
+      "Bash(unzip -p /Users/jackson.mafra/.gradle/caches/modules-2/files-2.1/androidx.navigation3/navigation3-ui-android/1.1.0/8a241b4df6dcdc31cf18f45735719c819c7447ec/navigation3-ui-android-1.1.0-sources.jar commonMain/androidx/navigation3/ui/LocalNavAnimatedContentScope.kt)",
+      "Bash(ls README*)",
+      "Bash(find . -maxdepth 3 -type f \\\\\\(-name *.png -o -name *.jpg -o -name *.jpeg \\\\\\) -not -path */build/* -not -path */.gradle/* -not -path */.git/*)",
+      "Bash(find . -type d -name *shot* -not -path */build/* -not -path */.git/*)",
+      "Bash(find . -type f -name *.png -not -path */build/* -not -path */.git/* -not -path */design/* -not -path */.gradle/*)",
+      "Bash(mv H2Hwr.png home.png)",
+      "Bash(mv 5S8rV.png home-cinema-sheet.png)",
+      "Bash(mv JtN2O.png movie-detail.png)",
+      "Bash(mv 6VuMw.png seat-selection.png)",
+      "Bash(mv 7UjVs.png payment-sheet.png)"
     ]
   }
 }

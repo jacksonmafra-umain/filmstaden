@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -44,6 +45,8 @@ import com.filmstaden.app.ui.components.CinemaContextBar
 import com.filmstaden.app.ui.components.DateChip
 import com.filmstaden.app.ui.components.FilmstadenButton
 import com.filmstaden.app.ui.components.TimeChip
+import com.filmstaden.app.ui.sharedElementModifier
+import com.filmstaden.app.ui.sheets.CinemaSheetViewModel
 import com.filmstaden.app.ui.theme.BgCard
 import com.filmstaden.app.ui.theme.BgDark
 import com.filmstaden.app.ui.theme.BorderSubtle
@@ -58,9 +61,11 @@ import org.koin.core.parameter.parametersOf
 fun MovieDetailScreen(
     movieId: String,
     navigator: AppComposeNavigator = koinInject(),
-    viewModel: MovieDetailViewModel = koinViewModel(parameters = { parametersOf(movieId) })
+    viewModel: MovieDetailViewModel = koinViewModel(parameters = { parametersOf(movieId) }),
+    cinemaSheetVm: CinemaSheetViewModel = koinInject()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val cinema by cinemaSheetVm.selectedCinema.collectAsStateWithLifecycle()
     val movie = state.movie
 
     Column(
@@ -68,6 +73,7 @@ fun MovieDetailScreen(
             .fillMaxSize()
             .background(BgDark)
             .verticalScroll(rememberScrollState())
+            .navigationBarsPadding()
     ) {
         Box(
             modifier = Modifier
@@ -78,7 +84,9 @@ fun MovieDetailScreen(
                 painter = painterResource(movie.heroResId ?: movie.posterResId),
                 contentDescription = movie.title,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .then(sharedElementModifier("movie-hero-${movie.id}"))
             )
             Box(
                 modifier = Modifier
@@ -110,10 +118,10 @@ fun MovieDetailScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             CinemaContextBar(
-                city = state.cinema.city,
-                cinemaName = state.cinema.name,
-                hall = state.cinema.hall,
-                onChange = {}
+                city = cinema.city,
+                cinemaName = cinema.name,
+                hall = cinema.hall,
+                onChange = cinemaSheetVm::open
             )
 
             Row(

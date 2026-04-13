@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -46,6 +47,7 @@ import com.filmstaden.app.navigation.AppComposeNavigator
 import com.filmstaden.app.ui.components.CinemaContextBar
 import com.filmstaden.app.ui.components.FilmstadenButton
 import com.filmstaden.app.ui.components.SeatGrid
+import com.filmstaden.app.ui.sheets.CinemaSheetViewModel
 import com.filmstaden.app.ui.sheets.PaymentSheet
 import com.filmstaden.app.ui.theme.BgCard
 import com.filmstaden.app.ui.theme.BgDark
@@ -68,14 +70,17 @@ fun SeatSelectionScreen(
     date: String,
     time: String,
     navigator: AppComposeNavigator = koinInject(),
-    viewModel: SeatSelectionViewModel = koinViewModel(parameters = { parametersOf(movieId, date, time) })
+    viewModel: SeatSelectionViewModel = koinViewModel(parameters = { parametersOf(movieId, date, time) }),
+    cinemaSheetVm: CinemaSheetViewModel = koinInject()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val cinema by cinemaSheetVm.selectedCinema.collectAsStateWithLifecycle()
 
+    Box(modifier = Modifier.fillMaxSize().background(BgDark)) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(BgDark)
+            .navigationBarsPadding()
             .padding(top = 48.dp)
     ) {
         // Header
@@ -101,10 +106,10 @@ fun SeatSelectionScreen(
 
         Box(modifier = Modifier.padding(horizontal = 20.dp)) {
             CinemaContextBar(
-                city = state.cinema.city,
-                cinemaName = state.cinema.name,
-                hall = state.cinema.hall,
-                onChange = {}
+                city = cinema.city,
+                cinemaName = cinema.name,
+                hall = cinema.hall,
+                onChange = cinemaSheetVm::open
             )
         }
 
@@ -117,21 +122,29 @@ fun SeatSelectionScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-                Text("Ordinary", color = TextPrimary, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-                Text("129 SEK each", color = TextMuted, fontSize = 11.sp)
+                Text(state.tierLabel, color = TextPrimary, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Text(state.priceEachLabel, color = TextMuted, fontSize = 11.sp)
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                CounterButton(Icons.Filled.Remove, isPrimary = false) { viewModel.changeTicketCount(-1) }
+                CounterButton(
+                    icon = Icons.Filled.Remove,
+                    isPrimary = false,
+                    enabled = state.canRemoveSeat
+                ) { viewModel.removeSeat() }
                 Text(
                     text = state.ticketCount.toString(),
                     color = TextPrimary,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
-                CounterButton(Icons.Filled.Add, isPrimary = true) { viewModel.changeTicketCount(1) }
+                CounterButton(
+                    icon = Icons.Filled.Add,
+                    isPrimary = true,
+                    enabled = state.canAddSeat
+                ) { viewModel.addSeat() }
             }
         }
 
@@ -210,6 +223,8 @@ fun SeatSelectionScreen(
             }
         }
 
+    }
+
         PaymentSheet(
             visible = state.isPaymentSheetOpen,
             totalPrice = state.totalPrice,
@@ -237,22 +252,28 @@ private fun CircleIcon(icon: androidx.compose.ui.graphics.vector.ImageVector, de
 }
 
 @Composable
-private fun CounterButton(icon: androidx.compose.ui.graphics.vector.ImageVector, isPrimary: Boolean, onClick: () -> Unit) {
+private fun CounterButton(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    isPrimary: Boolean,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    val alpha = if (enabled) 1f else 0.4f
     Box(
         modifier = Modifier
             .size(32.dp)
             .clip(CircleShape)
             .then(
-                if (isPrimary) Modifier.background(FsRed)
-                else Modifier.border(BorderStroke(1.5.dp, BorderSubtle), CircleShape)
+                if (isPrimary) Modifier.background(FsRed.copy(alpha = alpha))
+                else Modifier.border(BorderStroke(1.5.dp, BorderSubtle.copy(alpha = alpha)), CircleShape)
             )
-            .clickable(onClick = onClick),
+            .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
         Icon(
             icon,
             null,
-            tint = if (isPrimary) Color.White else TextMuted,
+            tint = (if (isPrimary) Color.White else TextMuted).copy(alpha = alpha),
             modifier = Modifier.size(16.dp)
         )
     }
