@@ -8,12 +8,12 @@
         android:label="Filmstaden"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Filmstaden">
+        android:theme="@style/Theme.Filmstaden.Splash">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Filmstaden">
+            android:theme="@style/Theme.Filmstaden.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -2,7 +2,8 @@
 agp = "8.10.1"
 kotlin = "2.3.20"
 compose-bom = "2025.12.01"
-nav3 = "1.0.0-alpha04"
+nav3 = "1.1.0"
+splash = "1.0.1"
 koin-bom = "4.0.3"
 kotlinx-serialization = "1.9.0"
 coil = "3.1.0"
@@ -30,6 +31,9 @@ compose-foundation = { module = "androidx.compose.foundation:foundation" }
 # Navigation 3
 navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3" }
 navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3" }
+
+# Splash screen
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
 
 # Kotlinx Serialization
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }

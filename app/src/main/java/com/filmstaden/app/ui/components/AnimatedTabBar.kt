@@ -175,6 +175,3 @@ fun AnimatedTabBar(
     }
 }
 
-// Extension to keep selection in a stable order
-private val BottomTab.Companion.entriesOrdered: List<BottomTab>
-    get() = listOf(BottomTab.HOME, BottomTab.TICKETS, BottomTab.MORE)

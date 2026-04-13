@@ -80,8 +80,8 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
             Box(modifier = Modifier.weight(1f)) {
                 NavDisplay(
                     backStack = backStack,
-                    onBack = { count ->
-                        repeat(count) { if (backStack.size > 1) backStack.removeAt(backStack.lastIndex) }
+                    onBack = {
+                        if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
                     },
                     transitionSpec = {
                         slideInHorizontally(tween(320)) { it } + fadeIn(tween(280)) togetherWith

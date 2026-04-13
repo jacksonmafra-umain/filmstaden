@@ -68,6 +68,9 @@ dependencies {
     implementation(libs.navigation3.runtime)
     implementation(libs.navigation3.ui)
 
+    // Splash screen
+    implementation(libs.androidx.splashscreen)
+
     // Serialization
     implementation(libs.kotlinx.serialization.core)
 
