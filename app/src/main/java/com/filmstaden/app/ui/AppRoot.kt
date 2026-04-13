@@ -10,6 +10,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,6 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -51,6 +55,7 @@ fun AppRoot(
 ) {
     val backStack = rememberNavBackStack(Home)
     val sheetOpen by cinemaSheetVm.isOpen.collectAsStateWithLifecycle()
+    var splashDone by remember { mutableStateOf(false) }
 
     LaunchedEffect(navigator) {
         navigator.commands.collect { command ->
@@ -147,6 +152,10 @@ fun AppRoot(
             onSelect = cinemaSheetVm::select,
             onDismiss = cinemaSheetVm::close
         )
+
+        if (!splashDone) {
+            FilmstadenSplash(onFinished = { splashDone = true })
+        }
       }
       }
     }
