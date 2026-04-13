@@ -93,7 +93,7 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
                     },
                     entryProvider = entryProvider {
                         entry<Home> {
-                            PlaceholderScreen("Home")
+                            com.filmstaden.app.ui.screens.home.HomeScreen()
                         }
                         entry<MovieDetail> { key ->
                             PlaceholderScreen("Movie Detail: ${key.movieId}")

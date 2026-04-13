@@ -3,6 +3,8 @@ package com.filmstaden.app.di
 import com.filmstaden.app.data.repository.FilmstadenRepository
 import com.filmstaden.app.navigation.AppComposeNavigator
 import com.filmstaden.app.navigation.ComposeNavigator
+import com.filmstaden.app.ui.screens.home.HomeViewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val navigationModule = module {
@@ -14,7 +16,7 @@ val dataModule = module {
 }
 
 val viewModelModule = module {
-    // ViewModels will be added as screens are built
+    viewModel { HomeViewModel(get()) }
 }
 
 val appModules = listOf(navigationModule, dataModule, viewModelModule)
