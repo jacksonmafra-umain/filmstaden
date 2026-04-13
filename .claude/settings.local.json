@@ -16,7 +16,9 @@
       "Bash(chmod +x /Users/jackson.mafra/Downloads/Projects/filmstaden/gradlew)",
       "Bash(git reset:*)",
       "Bash(git commit -m \"chore: project scaffold with Gradle 9 + Kotlin 2.3.20:*)",
-      "Bash(git commit -m \"feat\\(theme\\): Filmstaden dark theme with brand colors:*)"
+      "Bash(git commit -m \"feat\\(theme\\): Filmstaden dark theme with brand colors:*)",
+      "Bash(ls *.png)",
+      "Bash(git commit -m \"feat\\(data\\): models + mock repository with posters:*)"
     ]
   }
 }
