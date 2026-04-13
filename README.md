@@ -28,9 +28,7 @@ The goal was to practice recent Android stack pieces (Jetpack Navigation 3, shar
 
 ## Tech
 
-- **Kotlin 2.3**, **Compose BOM 2025.12** on **AGP 8.10**, targeting SDK 36
 - **Navigation 3 (1.1.0)** with shared-element transitions via `SharedTransitionLayout` + `LocalNavAnimatedContentScope`
-- **Koin 4** for DI (`single` repository + `CinemaSheetViewModel` shared across the nav graph)
 - **StateFlow**-based state in VMs; cinema selection lives in the repository as the source of truth
 - **Edge-to-edge** with transparent system bars; per-screen `navigationBarsPadding()` / hero imagery handles safe areas
 - **MotionLayout-free** animations — springy press feedback, animated tab pill indicator, seat scale-in, etc.
