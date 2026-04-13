@@ -6,6 +6,12 @@ All content, logos, and brand references are used only as a visual reference for
 
 The goal was to practice recent Android stack pieces (Jetpack Navigation 3, shared-element transitions, Koin 4, edge-to-edge) while building something a little more opinionated than a counter app — a small, self-contained booking flow with realistic states.
 
+## Demo
+
+https://github.com/jacksonmafra-umain/filmstaden/raw/main/design/demo.mp4
+
+> If the player doesn't render inline on your client, grab the file directly: [`design/demo.mp4`](design/demo.mp4).
+
 ## Screenshots
 
 | Home | Cinema picker | Movie Detail | Seat Selection |
