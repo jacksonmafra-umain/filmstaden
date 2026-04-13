@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.filmstaden.se)",
+      "WebSearch",
+      "WebFetch(domain:brandfetch.com)",
+      "WebFetch(domain:logos.fandom.com)",
+      "WebFetch(domain:www.avid.wiki)",
+      "WebFetch(domain:fontsinuse.com)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"Initial design files:*)",
+      "Bash(cp /Users/jackson.mafra/Downloads/Projects/Navigation3/gradle/wrapper/gradle-wrapper.jar /Users/jackson.mafra/Downloads/Projects/filmstaden/gradle/wrapper/)",
+      "Bash(cp /Users/jackson.mafra/Downloads/Projects/Navigation3/gradlew /Users/jackson.mafra/Downloads/Projects/filmstaden/)",
+      "Bash(cp /Users/jackson.mafra/Downloads/Projects/Navigation3/gradlew.bat /Users/jackson.mafra/Downloads/Projects/filmstaden/)",
+      "Bash(chmod +x /Users/jackson.mafra/Downloads/Projects/filmstaden/gradlew)",
+      "Bash(git reset:*)",
+      "Bash(git commit -m \"chore: project scaffold with Gradle 9 + Kotlin 2.3.20:*)",
+      "Bash(git commit -m \"feat\\(theme\\): Filmstaden dark theme with brand colors:*)"
+    ]
+  }
+}
