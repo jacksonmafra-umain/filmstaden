@@ -8,9 +8,9 @@ The goal was to practice recent Android stack pieces (Jetpack Navigation 3, shar
 
 ## Demo
 
-https://github.com/jacksonmafra-umain/filmstaden/raw/main/design/demo.mp4
+<video src="https://github.com/jacksonmafra-umain/filmstaden/raw/main/design/demo.mp4" controls width="360"></video>
 
-> If the player doesn't render inline on your client, grab the file directly: [`design/demo.mp4`](design/demo.mp4).
+> If the embedded player doesn't render on your client, open it directly: [`design/demo.mp4`](design/demo.mp4).
 
 ## Screenshots
 
