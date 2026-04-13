@@ -21,7 +21,8 @@
       "Bash(git commit -m \"feat\\(data\\): models + mock repository with posters:*)",
       "Bash(git commit -m \"feat\\(navigation\\): Navigation 3 infrastructure with Koin:*)",
       "Bash(git commit -m \"feat\\(home\\): Home screen with movie sections and cinema selection:*)",
-      "Bash(git commit -m \"feat\\(moviedetail\\): Movie Detail screen with date/time selection:*)"
+      "Bash(git commit -m \"feat\\(moviedetail\\): Movie Detail screen with date/time selection:*)",
+      "Bash(git commit -m \"feat\\(seats\\): Seat Selection screen + Payment bottom sheet:*)"
     ]
   }
 }

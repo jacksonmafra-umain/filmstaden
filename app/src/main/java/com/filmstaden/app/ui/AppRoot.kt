@@ -99,7 +99,11 @@ fun AppRoot(navigator: AppComposeNavigator = koinInject()) {
                             com.filmstaden.app.ui.screens.moviedetail.MovieDetailScreen(movieId = key.movieId)
                         }
                         entry<SeatSelection> { key ->
-                            PlaceholderScreen("Seats for ${key.movieId}")
+                            com.filmstaden.app.ui.screens.seatselection.SeatSelectionScreen(
+                                movieId = key.movieId,
+                                date = key.date,
+                                time = key.time
+                            )
                         }
                         entry<MyTickets> {
                             PlaceholderScreen("My Tickets")

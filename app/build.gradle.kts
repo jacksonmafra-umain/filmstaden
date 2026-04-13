@@ -5,14 +5,16 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+val jdkVersion = findProperty("jdkVersion").toString()
+
 android {
     namespace = "com.filmstaden.app"
-    compileSdk = 36
+     compileSdk = findProperty("android.compileSdk").toString().toInt()
 
     defaultConfig {
         applicationId = "com.filmstaden.app"
-        minSdk = 26
-        targetSdk = 36
+        minSdk = findProperty("android.minSdk").toString().toInt()
+        targetSdk = findProperty("android.targetSdk").toString().toInt()
         versionCode = 1
         versionName = "1.0"
     }
@@ -28,12 +30,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.toVersion(jdkVersion)
+        targetCompatibility = JavaVersion.toVersion(jdkVersion)
     }
 
-    kotlinOptions {
-        jvmTarget = "18"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(jdkVersion))
+        }
     }
 
     buildFeatures {
